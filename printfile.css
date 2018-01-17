@@ -1,0 +1,17 @@
+
+textarea{
+
+	resize : none;
+}
+
+.table-header{
+	 background: #D3D3D3;
+}
+.table-rows:nth-child(even){
+     background: #D3D3D3;
+     
+}
+
+.form-radio{
+	font-weight:normal
+}

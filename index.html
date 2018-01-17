@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>
+Print Center
+</title>
+<link rel="stylesheet" href="printfile.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body ng-app = "printFile">
+<div class="container" ng-controller = "PrintFileController">
+<div class = "row">
+ <div class = "col-xs-8">
+ <h3>Print Center options</h3>
+ <h5>In order for the print center to best serve you, please fill in the information below</h5>
+<form name="printForm">
+<fieldset class="form-group">
+    <p>Deliver To:</p>
+    <div class="form-check">
+      <label class="form-check-label form-radio" ng-init="printForm.delivery = 'owner'">
+        <input type="radio" class="form-check-input" name="deliver" ng-model = "printForm.delivery" value = "owner">
+        Meeting Owner
+      </label>
+    </div>
+    <div class="form-check">
+    <label class="form-check-label form-radio">
+        <input type="radio" class="form-check-input" name="deliver" ng-model= "printForm.delivery" value="room">
+        Meeting Room
+      </label>
+    </div>
+    
+  </fieldset>
+  <div class="form-group">
+    <label for="instruction"></label>
+    <textarea class="form-control" name="instruction" placeholder="Instructions" ng-model = "printForm.instructions" rows="3"></textarea>
+  </div>
+  
+  <table class="table table-bordered .table-condensed">
+    <thead>
+      <tr class ="table-header">
+        <th>File</th>
+        <th>Print</th>
+        <th>Color</th>
+        <th>Notes</th>
+      </tr>
+    </thead>  
+    <tbody>
+      <tr class="table-rows" ng-repeat = "file in fileList">
+        <td>{{file.fileName}}</td>    
+   		<td ng-init="file.isPrintChecked = false"><input type="checkbox" class="form-check-input" ng-model = "file.isPrintChecked"> 
+   		</td>
+        <td ng-init="file.isColorChecked = false"><input type="checkbox" class="form-check-input" ng-model = "file.isColorChecked"></td>
+        <td><input type="text" class="form-control" name = "notes" placeholder="Notes..."ng-model ="file.notes"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class = "pull-right">
+  <button class="btn btn-primary" ng-click="submitPrint()">Submit</button>
+  <button class="btn btn-primary" ng-click="cancelPrint()">Cancel</button>
+  </div>
+ </form>
+ </div>
+ </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="printfile.js"></script>
+
+
+</body>
+
+</html>
